@@ -16,14 +16,14 @@ public class ServerApp {
         Socket socket = null;
         InputStream is = null;
         OutputStream os = null;
-
+        ServerSocket serverSocket = null;
         try {
             String serverPort = args[0];
             String cookieFile = args[1];
             System.out.println("" + serverPort + " " + cookieFile);
         
             // Create a server
-            ServerSocket serverSocket = 
+            serverSocket = 
                     new ServerSocket(Integer.parseInt(serverPort));
             System.out.println("Cookie Server started on " +serverPort);
             while(true){
@@ -55,13 +55,14 @@ public class ServerApp {
                 }
 
             }
+            
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
             try {
-                socket.close();
+                serverSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
