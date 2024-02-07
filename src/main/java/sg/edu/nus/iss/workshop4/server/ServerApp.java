@@ -43,6 +43,11 @@ public class ServerApp {
                         if(dataFromClient.equals("get-cookie")){
                             String cookieName = Cookie.getRandomCookie(cookieFile);
                             dos.writeUTF("cookie-text_" + cookieName);
+                        } if(dataFromClient.equals("close")){
+                            System.out.println("Client requested to close connection");
+                            dos.writeUTF("Goodbye");
+                            socket.close();
+                            break;
                         }else{
                             dos.writeUTF("Invalid command");
                         }
