@@ -51,6 +51,7 @@ public class ServerApp {
                         }else{
                             dos.writeUTF("Invalid command");
                         }
+                        dos.flush();
                     }catch(EOFException e){
                         System.out.println("Client disconnected");
                         socket.close();
