@@ -13,32 +13,30 @@ public class Cookie {
         String randomCookie = "No cookie for you !";
         List<String> cookies = new LinkedList<>();
 
-
         try {
             cookies = getDataFromCookieFile(cookieFilePath);
 
             Random r = new Random();
-            if(cookies.size() > 0){
+            if (cookies.size() > 0) {
                 int randomIndex = r.nextInt(cookies.size());
                 randomCookie = cookies.get(randomIndex);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         return randomCookie;
     }
 
     private static List<String> getDataFromCookieFile(
-                    String cookieFilePath) throws IOException {
-        BufferedReader br = 
-                new BufferedReader(new FileReader(cookieFilePath));
+            String cookieFilePath) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(cookieFilePath));
         List<String> cookies = new LinkedList<>();
         String line;
-        while((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             cookies.add(line);
         }
         return cookies;
     }
-    
+
 }

@@ -14,11 +14,10 @@ public class ClientApp {
         System.out.println("ClientApp.main()");
         String[] connInfo = args[0].split(":");
         System.out.println(connInfo[0] + " " + connInfo[1]);
-        
+
         try {
-            while(true){
-                Socket sock= 
-                    new Socket(connInfo[0], Integer.parseInt(connInfo[1]));
+            while (true) {
+                Socket sock = new Socket(connInfo[0], Integer.parseInt(connInfo[1]));
                 InputStream is = sock.getInputStream();
                 DataInputStream dis = new DataInputStream(is);
 
@@ -32,10 +31,10 @@ public class ClientApp {
                 dos.flush();
 
                 String response = dis.readUTF();
-                if(response.contains("cookie-text_")){
+                if (response.contains("cookie-text_")) {
                     String[] arrRes = response.split("_");
                     System.out.println("Cookie from server: " + arrRes[1]);
-                }else{
+                } else {
                     System.err.println(response);
                 }
 
@@ -43,7 +42,7 @@ public class ClientApp {
                 os.close();
                 sock.close();
             }
-            
+
         } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (UnknownHostException e) {
@@ -51,6 +50,6 @@ public class ClientApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-    }   
+
+    }
 }
