@@ -27,7 +27,7 @@ public class ClientApp {
 
                 Console cons = System.console();
 
-                String input = cons.readLine("Server command to the server: ");
+                String input = cons.readLine("Send client command to the server: ");
                 dos.writeUTF(input);
                 dos.flush();
 
